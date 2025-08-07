@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kaushik R | AI & Frontend Developer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <style>
+    :root {
+      --bg-color: #0f172a;
+      --text-color: #f1f5f9;
+      --accent-color: #38bdf8;
+      --card-bg: #1e293b;
+      --card-hover: #1f2937;
+    }
+
+    [data-theme='light'] {
+      --bg-color: #f1f5f9;
+      --text-color: #0f172a;
+      --accent-color: #2563eb;
+      --card-bg: #e2e8f0;
+      --card-hover: #cbd5e1;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: var(--bg-color);
+      color: var(--text-color);
+      transition: background 0.4s, color 0.4s;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--card-bg), var(--bg-color));
+      padding: 3rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
+
+    .profile-glow-ring {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        padding: 4px;
+        background: conic-gradient(
+            from 180deg,
+            var(--accent-color),
+            transparent 25%,
+            var(--accent-color),
+            transparent 50%,
+            var(--accent-color),
+            transparent 75%,
+            var(--accent-color)
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: floatUpDown 3s ease-in-out infinite;
+        box-shadow: 0 0 25px var(--accent-color);
+    }
+
+    .profile-glow-ring img {
+        width: 100%;
+        height: fit-content;
+        aspect-ratio: 1 / 1;
+        border-radius: 50%;
+        border: 4px solid var(--bg-color);
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .profile-glow-ring:hover {
+        box-shadow: 0 0 35px var(--accent-color);
+        transform: scale(1.02);
+        transition: transform 0.3s ease;
+    }
+
+    .profile-glow-ring:hover img {
+        transform: scale(1.05);
+    }
+
+    @keyframes floatUpDown {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+
+    header h1 {
+      font-size: 3rem;
+      animation: fadeInDown 1s ease-in-out;
+    }
+
+    header p {
+      font-size: 1.3rem;
+      color: var(--accent-color);
+      animation: fadeInUp 1.2s ease-in-out;
+    }
+
+    .social-icons {
+      margin-top: 1rem;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .social-icons a {
+      margin: 0 10px;
+      color: var(--accent-color);
+      font-size: 1.5rem;
+      text-decoration: none;
+      transition: transform 0.3s;
+    }
+
+    .social-icons a:hover {
+      transform: scale(1.2);
+    }
+
+    .toggle-container {
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+    }
+
+    .toggle-switch {
+        position: relative;
+        width: 60px;
+        height: 30px;
+        background: var(--card-bg);
+        border: 2px solid var(--accent-color);
+        border-radius: 50px;
+        cursor: pointer;
+        transition: background 0.4s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    .toggle-switch i {
+        font-size: 20px;
+        color: var(--accent-color);
+        transition: transform 0.6s ease, opacity 0.4s, text-shadow 0.3s;
+        text-shadow: 0 0 8px var(--accent-color);
+    }
+
+    .rotate {
+        transform: rotate(360deg);
+    }
+
+    .toggle-switch:hover {
+      background: var(--card-hover);
+    }
+
+    .toggle-switch:hover i {
+      text-shadow: 0 0 12px var(--accent-color);
+    }
+
+    .download-resume {
+        margin-top: 1.5rem;
+        animation: floatResume 4s ease-in-out infinite;
+    }
+
+    .resume-btn {
+      display: inline-block;
+      padding: 0.7rem 1.4rem;
+      background: var(--accent-color);
+      color: var(--bg-color);
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, background 0.3s, color 0.3s;
+    }
+
+    .resume-btn i {
+      margin-right: 10px;
+    }
+
+    .resume-btn:hover {
+      background: var(--text-color);
+      color: var(--accent-color);
+      transform: scale(1.08);
+    }
+
+    @keyframes floatResume {
+      0%, 100% {
+          transform: translateY(0px);
+      }
+      50% {
+          transform: translateY(-6px);
+      }
+    }
+
+    section {
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 {
+      border-bottom: 2px solid var(--accent-color);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .skills span, .soft-skills span {
+      display: inline-block;
+      background: var(--card-bg);
+      padding: 0.5rem 1rem;
+      margin: 0.3rem;
+      border-radius: 20px;
+      color: var(--accent-color);
+      transition: background 0.3s;
+    }
+
+    .skills span:hover, .soft-skills span:hover {
+      background: var(--card-hover);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      background: var(--card-hover);
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .project-content {
+      padding: 1rem;
+    }
+
+    .project-content h3 {
+      margin-top: 0.5rem;
+      font-size: 1.2rem;
+      color: var(--accent-color);
+    }
+
+    .project-content p {
+      margin: 0.5rem 0 1rem;
+      font-size: 0.95rem;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .project-links a {
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      background: var(--accent-color);
+      color: var(--bg-color);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .project-links a:hover {
+      background: var(--text-color);
+      color: var(--accent-color);
+      transform: scale(1.05);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      background: var(--card-bg);
+      margin-top: 2rem;
+      color: var(--accent-color);
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 2rem 1rem;
+      }
+
+      .profile-glow-ring {
+        width: 140px;
+        height: 140px;
+        padding: 3px;
+      }
+
+      header h1 {
+        font-size: 2rem;
+      }
+
+      header p {
+        font-size: 1.1rem;
+      }
+
+      .resume-btn {
+        font-size: 0.9rem;
+        padding: 0.6rem 1.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .profile-glow-ring {
+        width: 120px;
+        height: 120px;
+      }
+
+      header h1 {
+        font-size: 1.6rem;
+      }
+
+      .resume-btn {
+        font-size: 0.85rem;
+        padding: 0.5rem 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body data-theme="dark">
+  <header>
+    <div class="toggle-container">
+      <div class="toggle-switch" onclick="toggleTheme()">
+        <i id="theme-icon" class="fas fa-moon"></i>
+      </div>
+      <audio id="toggle-sound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_0e6ab1b1c6.mp3"></audio>
+    </div>
+
+    <div class="profile-container" data-aos="zoom-in">
+      <div class="profile-glow-ring">
+        <img src="WhatsApp Image 2025-07-29 at 3.18.37 PM.jpeg" alt="Kaushik R" />
+      </div>
+    </div>
+    <h1>Kaushik R</h1>
+    <p>AI/ML Enthusiast & Frontend Developer</p>
+
+    <div class="social-icons">
+      <a href="mailto:kaushikrprasad13@gmail.com"><i class="fas fa-envelope"></i></a>
+      <a href="https://github.com/KaushikRprasad"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/kaushik-r-27293b35a/"><i class="fab fa-linkedin"></i></a>
+    </div>
+
+    <div class="download-resume" data-aos="fade-in">
+      <a href="kaushik resume.pdf" download class="resume-btn">
+        <i class="fas fa-download"></i> Download Resume
+      </a>
+    </div>
+  </header>
+
+  <section data-aos="fade-up">
+    <h2>About Me</h2>
+    <p>Aspiring AI and ML Developer with strong frontend skills and experience building immersive UIs. Passionate about creating intelligent, interactive applications.</p>
+  </section>
+
+  <section data-aos="fade-up" data-aos-delay="100">
+    <h2>Technical Skills</h2>
+    <div class="skills">
+      <span>Python</span><span>Java</span><span>C++</span><span>JavaScript</span><span>SQL</span>
+      <span>React.js</span><span>TensorFlow</span><span>PyTorch</span><span>HTML5</span><span>CSS3</span>
+    </div>
+  </section>
+
+  <!-- Updated Projects Section Starts -->
+  <section data-aos="fade-up" data-aos-delay="200">
+    <h2>Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        
+        <div class="project-content">
+          <h3>Online Electronic Repair System</h3>
+          <p>Android app using Java & SQLite. Secure login and real-time repair tracking features.</p>
+          <div class="project-links">
+            <a href="#">Demo</a>
+            <a href="https://github.com/KaushikRprasad">GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+       
+        <div class="project-content">
+          <h3>Web-Based Vulnerability Scanner</h3>
+          <p>Python & JS tool for website vulnerability detection with PDF reporting and responsive UI.</p>
+          <div class="project-links">
+            <a href="#">Demo</a>
+            <a href="https://github.com/KaushikRprasad">GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+       
+        <div class="project-content">
+          <h3>IoT Smart Parking System</h3>
+          <p>ESP32 & sensor-based real-time parking tracker synced to the cloud with embedded C++.</p>
+          <div class="project-links">
+            <a href="#">Demo</a>
+            <a href="https://github.com/KaushikRprasad">GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        
+        <div class="project-content">
+          <h3>GTA V Custom HUD</h3>
+          <p>Immersive in-game UI built with HTML/CSS/JS for enhanced roleplay using Figma prototypes.</p>
+          <div class="project-links">
+            <a href="#">Demo</a>
+            <a href="https://github.com/KaushikRprasad">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Updated Projects Section Ends -->
+
+  <section data-aos="fade-up" data-aos-delay="300">
+    <h2>Education</h2>
+    <p><strong>B.Tech in AI & ML</strong>, Garden City University (2022–2026)</p>
+    <p><strong>PUC</strong>, Global City PU College (2020–2022)</p>
+    <p><strong>10th</strong>, New Indus Valley Residential School (2019–2020)</p>
+  </section>
+
+  <section data-aos="fade-up" data-aos-delay="400">
+    <h2>Certifications</h2>
+    <ul>
+      <li>Programming Essentials in Python – Cisco</li>
+      <li>Hadoop Architecture and HDFS – NPTEL</li>
+      <li>Network Support & Security – Cisco</li>
+      <li>Business Writing & Presentations – Coursera</li>
+    </ul>
+  </section>
+
+  <section data-aos="fade-up" data-aos-delay="500">
+    <h2>Soft Skills</h2>
+    <div class="soft-skills">
+      <span>Communication</span>
+      <span>Leadership</span>
+      <span>Teamwork</span>
+      <span>Adaptability</span>
+      <span>Quick Learning</span>
+    </div>
+  </section>
+
+  <section data-aos="fade-up" data-aos-delay="550">
+    <h2>Interests</h2>
+    <div class="soft-skills">
+      <span>Gaming</span>
+      <span>Dance</span>
+      <span>Traveling</span>
+    </div>
+  </section>
+
+  <section data-aos="fade-up" data-aos-delay="600">
+    <h2>Languages</h2>
+    <div class="soft-skills">
+      <span>English</span>
+      <span>Kannada</span>
+      <span>Tamil</span>
+      <span>Telugu</span>
+      <span>Hindi</span>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Kaushik R | Built with ❤️
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({
+      once: true,
+      duration: 800,
+    });
+
+    function toggleTheme() {
+      const body = document.body;
+      const icon = document.getElementById("theme-icon");
+      const sound = document.getElementById("toggle-sound");
+      const currentTheme = body.getAttribute("data-theme");
+      const newTheme = currentTheme === "dark" ? "light" : "dark";
+
+      body.setAttribute("data-theme", newTheme);
+      sound.currentTime = 0;
+      sound.play();
+      icon.classList.add("rotate");
+      setTimeout(() => icon.classList.remove("rotate"), 600);
+
+      icon.classList.remove("fa-sun", "fa-moon");
+      icon.classList.add(newTheme === "light" ? "fa-sun" : "fa-moon");
+    }
+  </script>
+</body>
+</html>
+<script>
